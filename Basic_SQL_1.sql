@@ -1,18 +1,14 @@
---½Ç½À 1) °Å·¡¾× µ¥ÀÌÅÍ ºĞ¼®
---2017³âºÎÅÍ 2021³â 3¿ù±îÁöÀÇ ÀüÀÚ»ó°Å·¡ ÃßÁ¤°Å·¡¾× (´ÜÀ§ : ¹é¸¸¿ø)
---³» È¸»çÀÇ °Å·¡¾× µ¥ÀÌÅÍ¶ó°í »ı°¢ÇØµµ µÊ
+-- Data is from KOSIS
 
---1) µ¥ÀÌÅÍ Å½»ö--------------------------------------------------------------
-
---STEP 1) ¸ğµç ÄÃ·³ ÃßÃâÇÏ±â
+--STEP 1) ëª¨ë“  ì»¬ëŸ¼ ì¶”ì¶œ
 select *
 from gmv_trend
 
---STEP 2) Æ¯Á¤ ÄÃ·³ ÃßÃâÇÏ±â
+--STEP 2) íŠ¹ì • ì»¬ëŸ¼ ì¶”ì¶œ
 select category, yyyy, mm
 from gmv_trend
 
---STEP 3) Áßº¹°ª ¾øÀÌ Æ¯Á¤ ÄÃ·³ ÃßÃâÇÏ±â
+--STEP 3) ì¤‘ë³µê°’ ì—†ì´ íŠ¹ì • ì»¬ëŸ¼ ì¶”ì¶œí•˜ê¸°
 select distinct category
 from gmv_trend
 
@@ -21,10 +17,10 @@ select distinct yyyy, mm
 from gmv_trend
 
 
---2) Æ¯Á¤ ¿¬µµÀÇ ¸ÅÃâ Å½»ö--------------------------------------------------------------
+--2) íŠ¹ì • ì—°ë„ì˜ ë§¤ì¶œ íƒìƒ‰--------------------------------------------------------------
 
---2-1) Á¶°ÇÀÌ ÇÏ³ªÀÏ ¶§ More Example
-------a) ¼ıÀÚ¿­ (between, ´ë¼Òºñ±³)
+--2-1) ì¡°ê±´ì´ í•˜ë‚˜ì¼ ë•Œ More Example
+------a) ìˆ«ìì—´ (between, ëŒ€ì†Œë¹„êµ)
 select *
 from gmv_trend
 where yyyy = 2021
@@ -46,52 +42,52 @@ from gmv_trend
 where yyyy <> 2021
 	
 
-------b) ¹®ÀÚ¿­ (=, !=, like, in, not in)
+------b) ë¬¸ìì—´ (=, !=, like, in, not in)
 
 select *
 from gmv_trend
-where category = 'ÄÄÇ»ÅÍ ¹× ÁÖº¯±â±â'
+where category = 'ì»´í“¨í„° ë° ì£¼ë³€ê¸°ê¸°'
 
 select *
 from gmv_trend
-where category != 'ÄÄÇ»ÅÍ ¹× ÁÖº¯±â±â'
+where category != 'ì»´í“¨í„° ë° ì£¼ë³€ê¸°ê¸°'
 
 select *
 from gmv_trend 
-where category in ('ÄÄÇ»ÅÍ ¹× ÁÖº¯±â±â', '»ıÈ°¿ëÇ°')
+where category in ('ì»´í“¨í„° ë° ì£¼ë³€ê¸°ê¸°', 'ìƒí™œìš©í’ˆ')
 
 select *
 from gmv_trend 
-where category not in ('ÄÄÇ»ÅÍ ¹× ÁÖº¯±â±â', '»ıÈ°¿ëÇ°')
+where category not in ('ì»´í“¨í„° ë° ì£¼ë³€ê¸°ê¸°', 'ìƒí™œìš©í’ˆ')
 
 select *
 from gmv_trend 
-where category like '%ÆĞ¼Ç%'
+where category like '%íŒ¨ì…˜%'
 
 select *
 from gmv_trend 
-where category not like '%ÆĞ¼Ç%'
+where category not like '%íŒ¨ì…˜%'
 
---2-2) Á¶°ÇÀÌ ¿©·¯°³ÀÏ ¶§--------------------------------------------------------------
-------a) and Á¶°Ç
+--2-2) ì¡°ê±´ì´ ì—¬ëŸ¬ê°œì¼ ë•Œ--------------------------------------------------------------
+------a) and ì¡°ê±´
 select *
 from gmv_trend
-where category = 'ÄÄÇ»ÅÍ ¹× ÁÖº¯±â±â'
+where category = 'ì»´í“¨í„° ë° ì£¼ë³€ê¸°ê¸°'
 and yyyy = 2021
 ;
-------b) or Á¶°Ç
+------b) or ì¡°ê±´
 select *
 from gmv_trend
 where gmv > 1000000 or gmv < 10000
 
-------c) and, or Á¶°Ç È¥¿ë
+------c) and, or ì¡°ê±´ í˜¼ìš©
 select *
 from gmv_trend
 where (gmv > 1500000 or gmv < 100000) and yyyy = 2021
 
---3) Ä«Å×°í¸®º° ¸ÅÃâ ºĞ¼®--------------------------------------------------------------
+--3) ì¹´í…Œê³ ë¦¬ë³„ ë§¤ì¶œ ë¶„ì„--------------------------------------------------------------
 
---More Example) Ä«Å×°í¸®º°, ¿¬µµº° ¸ÅÃâ
+--More Example) ì¹´í…Œê³ ë¦¬ë³„, ì—°ë„ë³„ ë§¤ì¶œ
 select category cate, yyyy, sum(gmv) total_gmv
 from gmv_trend
 group by category, yyyy
@@ -111,39 +107,39 @@ from gmv_trend
 group by 1,2,3
 
 
---More Example) ÀüÃ¼ ÃÑÇÕ
+--More Example) ì „ì²´ ì´í•©
 
 select sum(gmv) as gmv, min(yyyy), max(yyyy), avg(gmv)
 from gmv_trend
 
---More Example) Áı°èÇÔ¼öÀÇ Á¾·ù
+--More Example) ì§‘ê³„í•¨ìˆ˜ì˜ ì¢…ë¥˜
 sum
 min
 max
 avg
 
---group by + where ¿¹½Ã
+--group by + where ì˜ˆì‹œ
 select category, yyyy, sum(gmv) as gmv
 from gmv_trend
-where category = 'ÄÄÇ»ÅÍ ¹× ÁÖº¯±â±â'
+where category = 'ì»´í“¨í„° ë° ì£¼ë³€ê¸°ê¸°'
 group by 1,2
 ;
 
---4)¸ÅÃâÀÌ ³ôÀº ÁÖ¿ä Ä«Å×°í¸®¸¸ È®ÀÎÇÏ±â--------------------------------------------------------------
+--4)ë§¤ì¶œì´ ë†’ì€ ì£¼ìš” ì¹´í…Œê³ ë¦¬ë§Œ í™•ì¸--------------------------------------------------------------
 select category, sum(gmv) as gmv
 from gmv_trend
 group by 1
 having sum(gmv) >= 50000000
 
 
---More Example) whereÀıÀÌ¶û °°ÀÌ ¾²±â
+--More Example) whereì ˆì´ë‘ ê°™ì´ ì“°ê¸°
 select category, sum(gmv) as gmv
 from gmv_trend
 where yyyy = 2020
 group by 1
 having sum(gmv) >= 10000000
 
---5) ¸ÅÃâÀÌ ³ôÀº ¼øÀ¸·Î Ä«Å×°í¸® Á¤·ÄÇÏ±â--------------------------------------------------------------
+--5) ë§¤ì¶œì´ ë†’ì€ ìˆœìœ¼ë¡œ ì¹´í…Œê³ ë¦¬ ì •ë ¬í•˜ê¸°--------------------------------------------------------------
 
 select *
 from gmv_trend
@@ -154,7 +150,7 @@ from gmv_trend
 group by 1
 order by gmv desc
 
---³»¸²Â÷¼ø Example
+--ë‚´ë¦¼ì°¨ìˆœ Example
 
 select category, yyyy, sum(gmv) as gmv
 from gmv_trend
@@ -162,14 +158,14 @@ group by 1,2
 order by 1 desc,3 desc
 
 
---[Ãß°¡ ¿¹Á¦ 1] º¹¼öÀÇ ÄÃ·³À¸·Î Á¤·Ä
+--ë³µìˆ˜ì˜ ì»¬ëŸ¼ìœ¼ë¡œ ì •ë ¬
 select yyyy, mm, sum(gmv) as gmv
 from gmv_trend
 group by 1,2
 order by 3 desc
 
 
---[Ãß°¡ ¿¹Á¦ 2] select Àı¿¡ ¾ø´Â ÄÃ·³À¸·Î Á¤·Ä °¡´ÉÇÒ±î? -> ºÒ°¡´É
+--select ì ˆì— ì—†ëŠ” ì»¬ëŸ¼ìœ¼ë¡œ ì •ë ¬ ê°€ëŠ¥í• ê¹Œ? -> ë¶ˆê°€ëŠ¥
 select yyyy, sum(gmv) as gmv
 from gmv_trend
 group by yyyy
